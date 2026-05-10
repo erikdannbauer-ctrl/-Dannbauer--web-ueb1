@@ -1,1 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Übung 1</title>
+</head>
+<body>
 
+<!-- ===================== STARTSEITE ===================== -->
+<section id="start">
+  <h1>VORNAME NACHNAME KLASSE</h1>
+
+  <h2>Adresse</h2>
+  <p>
+    Straße Hausnummer<br>
+    PLZ Ort
+  </p>
+
+  <h2>Schulbildung</h2>
+  <ol>
+    <li>20XX – Volksschule NAME</li>
+    <li>20XX – Unterstufe NAME</li>
+    <li>20XX – Oberstufe NAME</li>
+  </ol>
+
+  <h2>Inhalt</h2>
+  <ul>
+    <li><a href="#medien">Medienseite</a></li>
+    <li><a href="#linz">Linz-Seite</a></li>
+    <li><a href="#dynamisch">Dynamische-Datenseite</a></li>
+  </ul>
+</section>
+
+<hr>
+
+<!-- ===================== MEDIENSEITE ===================== -->
+<section id="medien">
+  <h1>Medienseite</h1>
+
+  <p>
+    <img src="img/bild1.jpg"
+         alt="Person"
+         title="Freies Bild"
+         width="400">
+
+    <br>
+
+    Quelle: URL HIER EINFÜGEN<br>
+    Lizenz: HIER LIZENZTEXT EINFÜGEN (z. B. CC BY 4.0)
+  </p>
+</section>
+
+<hr>
+
+<!-- ===================== LINZ ===================== -->
+<section id="linz">
+  <h1>Linz</h1>
+
+  <ul>
+    <li><a href="https://www.arseelectronica.at" target="_blank">Ars Electronica</a></li>
+    <li><a href="https://www.lask.at" target="_blank">LASK</a></li>
+    <li><a href="https://www.linz.at" target="_blank">Linz Info</a></li>
+  </ul>
+</section>
+
+<hr>
+
+<!-- ===================== DYNAMISCHE DATEN ===================== -->
+<section id="dynamisch">
+  <h1>Dynamische Datenseite</h1>
+
+  <h2>Stadtteile Linz</h2>
+  <ul id="liste-linz"></ul>
+
+  <h2>Service Daten</h2>
+  <ul id="service-linz"></ul>
+</section>
+
+<!-- ===================== JAVASCRIPT ===================== -->
+<script>
+  // Lokale Daten
+  const stadtteile = ["Urfahr", "Innere Stadt", "Bindermichel"];
+  const liste = document.getElementById("liste-linz");
+
+  stadtteile.forEach(s => {
+    let li = document.createElement("li");
+    li.textContent = s;
+    liste.appendChild(li);
+  });
+
+  let name = "DEIN NAME";
+  let mutter = "NAME DEINER MUTTER";
+
+  console.log(name, mutter);
+</script>
+
+<script>
+  // Serverdaten
+  fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
+    .then(data => {
+      const sListe = document.getElementById("service-linz");
+
+      data.forEach(user => {
+        let li = document.createElement("li");
+        li.textContent = "User: " + user.name;
+        sListe.appendChild(li);
+      });
+    });
+</script>
+
+</body>
+</html>
