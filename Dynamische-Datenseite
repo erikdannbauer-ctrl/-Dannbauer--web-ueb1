@@ -1,1 +1,73 @@
+<!-- dynamisch.html -->
 
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamische Daten</title>
+</head>
+
+<body>
+
+  <h1>Dynamische-Datenseite</h1>
+
+  <h2>Linzer Stadtteile</h2>
+
+  <ul id="liste-linz"></ul>
+
+  <h2>Zusätzliche Daten</h2>
+
+  <ul>
+    <li>Name: DEIN NAME</li>
+    <li>Name der Mutter: NAME DER MUTTER</li>
+  </ul>
+
+  <h2>Service-Daten</h2>
+
+  <ul id="service-liste"></ul>
+
+  <!-- JavaScript 5.a -->
+  <script>
+
+    const stadtteile = [
+      "Urfahr",
+      "Innere Stadt",
+      "Bindermichel"
+    ];
+
+    const liste = document.getElementById("liste-linz");
+
+    stadtteile.forEach(s => {
+      let li = document.createElement("li");
+      li.textContent = s;
+      liste.appendChild(li);
+    });
+
+  </script>
+
+  <!-- JavaScript 5.d -->
+  <script>
+
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+
+      .then(data => {
+
+        const sListe = document.getElementById("service-liste");
+
+        data.forEach(user => {
+
+          let li = document.createElement("li");
+
+          li.textContent = "User: " + user.name;
+
+          sListe.appendChild(li);
+
+        });
+
+      });
+
+  </script>
+
+</body>
+</html>
